@@ -48,9 +48,11 @@ export const LanguageProvider = ({ children }) => {
     <LanguageContext.Provider
       value={{
         language,
+        currentLang: language,
         setLanguage,
         t,
         availableLanguages,
+        languages: availableLanguages,
         currentLanguageInfo,
       }}
     >

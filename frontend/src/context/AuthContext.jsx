@@ -5,8 +5,13 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('flowpilot_user');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('flowpilot_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      localStorage.removeItem('flowpilot_user');
+      return null;
+    }
   });
   const [token, setToken] = useState(() => localStorage.getItem('flowpilot_token'));
   const [loading, setLoading] = useState(true);

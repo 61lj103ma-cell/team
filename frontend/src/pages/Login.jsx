@@ -13,7 +13,7 @@ export const Login = () => {
 
   const { login } = useAuth();
   const { showToast } = useToast();
-  const { currentLang, languages, setLanguage, t } = useLanguage();
+  const { language, availableLanguages = [], setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,11 +44,11 @@ export const Login = () => {
       <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-[#111827]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-800">
         <Globe className="w-3.5 h-3.5 text-cyan-400" />
         <select
-          value={currentLang}
+          value={language || 'en'}
           onChange={(e) => setLanguage(e.target.value)}
           className="bg-transparent text-xs text-slate-300 font-medium outline-none cursor-pointer pr-1"
         >
-          {languages.map((l) => (
+          {(availableLanguages || []).map((l) => (
             <option key={l.code} value={l.code} className="bg-slate-900 text-white">
               {l.flag} {l.name}
             </option>
