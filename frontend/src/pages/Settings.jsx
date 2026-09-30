@@ -34,7 +34,7 @@ export const Settings = () => {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const res = await api.get('/health', { baseURL: 'http://localhost:5000' });
+        const res = await api.get('/health');
         setHealthStatus(res);
       } catch (e) {
         setHealthStatus({ status: 'online', geminiKeyConfigured: false });
